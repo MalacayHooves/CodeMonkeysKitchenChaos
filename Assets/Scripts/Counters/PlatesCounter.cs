@@ -15,6 +15,13 @@ public class PlatesCounter : BaseCounter
     private int platesSpawnedAmount = 0;
     private float spawnPlateTimer;
 
+    private void Start()
+    {
+        platesSpawnedAmount++;
+
+        OnPlateSpawned?.Invoke(this, EventArgs.Empty);
+    }
+
     private void Update()
     {
         spawnPlateTimer += Time.deltaTime;
