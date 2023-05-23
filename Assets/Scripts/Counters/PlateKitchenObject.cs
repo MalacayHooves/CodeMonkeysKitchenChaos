@@ -20,6 +20,11 @@ public class PlateKitchenObject : KitchenObject
         kitchenObjectSOList = new List<KitchenObjectSO>();
     }
 
+    public List<KitchenObjectSO> GetKitchenObjectSOList()
+    {
+        return kitchenObjectSOList;
+    }
+
     public bool TryAddIngridient(KitchenObjectSO kitchenObjectSO)
     {
         if (!validKitchenObjectsSOList.Contains(kitchenObjectSO))
