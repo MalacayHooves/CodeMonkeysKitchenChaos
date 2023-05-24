@@ -31,6 +31,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         public BaseCounter selectedCounterArg;
     }
+    public event EventHandler OnPickedSomething;
 
     private void Awake()
     {
@@ -66,6 +67,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObject(KitchenObject newKitchenObject)
     {
         kitchenObject = newKitchenObject;
+
+        if (kitchenObject != null)
+        {
+            OnPickedSomething?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public KitchenObject GetKitchenObject() { return kitchenObject; }
