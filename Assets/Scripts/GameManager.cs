@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     public event EventHandler OnStateChanged;
 
@@ -20,11 +20,12 @@ public class GameManager : MonoBehaviour
     private State state;
     private float waitingToStartTimer = 1f;
     private float countdownToStartTimer = 3f;
-    private float gamePlayingTimer = 10f;
+    private float gamePlayingTimer;
+    private float gamePlayingTimerMax = 20f;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         state = State.WaitingToStart;
     }
 
@@ -45,8 +46,9 @@ public class GameManager : MonoBehaviour
                 if (countdownToStartTimer < 0f)
                 {
                     state = State.GamePlaying;
+                    gamePlayingTimer = gamePlayingTimerMax;
+                    OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
-                OnStateChanged?.Invoke(this, EventArgs.Empty);
                 break;
             case State.GamePlaying:
                 gamePlayingTimer -= Time.deltaTime;
@@ -75,5 +77,15 @@ public class GameManager : MonoBehaviour
     public float GetCountdownToStartTimer()
     {
         return countdownToStartTimer;
+    }
+
+    public bool IsGameOver()
+    {
+        return state == State.GameOver;
+    }
+
+    public float GetGamePlayingTimerNormalized()
+    {
+        return 1 - (gamePlayingTimer / gamePlayingTimerMax);
     }
 }

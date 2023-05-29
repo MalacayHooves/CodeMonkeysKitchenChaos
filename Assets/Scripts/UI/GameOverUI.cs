@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameStartCountdownUI : MonoBehaviour
+public class GameOverUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private TextMeshProUGUI deliveredRecipiesText;
 
     private void Start()
     {
@@ -14,18 +13,11 @@ public class GameStartCountdownUI : MonoBehaviour
         Hide();
     }
 
-    private void Update()
-    {
-        if (gameObject.activeSelf)
-        {
-            countdownText.text = Mathf.Ceil(GameManager.Instance.GetCountdownToStartTimer()).ToString();
-        }
-    }
-
     private void GameManager_OnStateChanged(object sender, System.EventArgs e)
     {
-        if (GameManager.Instance.IsCountdownToStartActive())
+        if (GameManager.Instance.IsGameOver())
         {
+            deliveredRecipiesText.text = DeliveryManager.Instance.GetSuccessfulRecipiesAmount().ToString();
             Show();
         }
         else
