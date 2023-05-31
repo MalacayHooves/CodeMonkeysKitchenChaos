@@ -20,7 +20,10 @@ public class GameInput : MonoBehaviour
         Move_Left,
         Interact,
         InteractAlt,
-        Pause
+        Pause,
+        Gamepad_Interact,
+        Gamepad_InteractAlt,
+        Gamepad_Pause
     }
 
     private const string PLAYER_PREFS_BINDINGS = "InputBindings";
@@ -95,6 +98,12 @@ public class GameInput : MonoBehaviour
                 return inputActions.Player.InteractAlternate.bindings[0].ToDisplayString();
             case Binding.Pause:
                 return inputActions.Player.Pause.bindings[0].ToDisplayString();
+            case Binding.Gamepad_Interact:
+                return inputActions.Player.Interact.bindings[1].ToDisplayString();
+            case Binding.Gamepad_InteractAlt:
+                return inputActions.Player.InteractAlternate.bindings[1].ToDisplayString();
+            case Binding.Gamepad_Pause:
+                return inputActions.Player.Pause.bindings[1].ToDisplayString();
         }
     }
 
@@ -135,6 +144,18 @@ public class GameInput : MonoBehaviour
             case GameInput.Binding.Pause:
                 inputAction = inputActions.Player.Pause;
                 bindingIndex = 0;
+                break;
+            case GameInput.Binding.Gamepad_Interact:
+                inputAction = inputActions.Player.Interact;
+                bindingIndex = 1;
+                break;
+            case GameInput.Binding.Gamepad_InteractAlt:
+                inputAction = inputActions.Player.InteractAlternate;
+                bindingIndex = 1;
+                break;
+            case GameInput.Binding.Gamepad_Pause:
+                inputAction = inputActions.Player.Pause;
+                bindingIndex = 1;
                 break;
         }
 

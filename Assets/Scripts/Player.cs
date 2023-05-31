@@ -97,7 +97,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         {
             //attempt only X move
             Vector3 moveDirX = new Vector3(moveDir.x, 0f, 0f).normalized;
-            canMove = CanMoveInDirection(moveDirX) && moveDir.x != 0f;
+            canMove = (moveDir.x < -.5f || moveDir.x > +.5f) && CanMoveInDirection(moveDirX);
 
             if (canMove)
             {
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 //cannot move only on the X
                 //attempt only Z movement
                 Vector3 moveDirZ = new Vector3(0f, 0f, moveDir.z).normalized;
-                canMove = CanMoveInDirection(moveDirZ) && moveDir.z != 0f;
+                canMove = (moveDir.z < -.5f || moveDir.z > +.5f) && CanMoveInDirection(moveDirZ);
 
                 if (canMove)
                 {
