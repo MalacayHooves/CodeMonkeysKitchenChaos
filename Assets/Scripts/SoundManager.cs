@@ -33,6 +33,16 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipRefsSO.Footstep, position, volume);
     }
 
+    public void PlayCountdownSound()
+    {
+        PlaySound(audioClipRefsSO.Warning, Vector3.zero);
+    }
+
+    public void PlayWarningSound(Vector3 position)
+    {
+        PlaySound(audioClipRefsSO.Warning, position);
+    }
+
     private void TrashCounter_OnAnyObjectTrashed(object sender, System.EventArgs e)
     {
         PlaySound(audioClipRefsSO.Trash, (sender as TrashCounter).transform.position);
