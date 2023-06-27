@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1221483177171418327}
   - component: {fileID: 9119893641885956258}
   - component: {fileID: -6512307258062816480}
+  - component: {fileID: 7167677233788983687}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -80,7 +81,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91aec80004d9ea54ba859497db117f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameInput: {fileID: 0}
   kitchenObjectHoldPoint: {fileID: 7686598252862529127}
   moveSpeed: 7
   rotateSpeed: 10
@@ -116,6 +116,32 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &7167677233788983687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6597265223906241192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced28a48a74974b4c858d1c4ba6cfc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 0
+  SyncPositionZ: 1
+  SyncRotAngleX: 0
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 0
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
 --- !u!1001 &3739361501615427497
 PrefabInstance:
   m_ObjectHideFlags: 0
