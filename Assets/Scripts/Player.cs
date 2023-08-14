@@ -201,4 +201,9 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
 
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs { selectedCounterArg = selectedCounter });
     }
+
+    public NetworkObject GetNetworkObject()
+    {
+        return NetworkObject;
+    }
 }
