@@ -19,13 +19,16 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
     [SerializeField] private float rotateSpeed = 10f;
 
     [SerializeField] private LayerMask countersLayerMask;
+    [SerializeField] private LayerMask collisionsLayerMask;
+
+    [SerializeField] private List<Vector3> spawnPositionList;
 
     private bool isWalking = false;
     private float moveDistance;
     private Vector3 lastInteractDir;
     private BaseCounter selectedCounter;
 
-    private float playerHeight = 2f;
+    //private float playerHeight = 2f;
     private float playerRadius = .7f;
     private float interactDistance = 2f;
 
@@ -47,6 +50,8 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
     public override void OnNetworkSpawn()
     {
         if (IsOwner) LocalInstance = this;
+
+        transform.position = spawnPositionList[(int)OwnerClientId];
 
         OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
     }
@@ -174,7 +179,8 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
 
     private bool CanMoveInDirection(Vector3 direction)
     {
-        return !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, direction, moveDistance);
+        return !Physics.BoxCast
+            (transform.position, Vector3.one * playerRadius, direction, Quaternion.identity, moveDistance, collisionsLayerMask);
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
