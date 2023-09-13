@@ -170,6 +170,8 @@ public class GameManager : NetworkBehaviour
 
     public bool IsLocalPlayerReady => isLocalPlayerReady;
 
+    public bool IsWaitingToStart => state.Value == State.WaitingToStart;
+
     public void TogglePauseGame()
     {
         isLocalGamePaused = !isLocalGamePaused;
